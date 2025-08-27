@@ -1,0 +1,34 @@
+<xsl:stylesheet version="1.0"
+    xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+    xmlns:ds="http://www.w3.org/2000/09/xmldsig#"
+    xmlns:cu="urn:customs.ru:Information:CustomsDocuments:ESADout_CU:5.24.0"
+    xmlns:cat="urn:customs.ru:CommonAggregateTypes:5.24.0"
+    xmlns:ct="urn:customs.ru:CUESADCommonAggregateTypesCust:5.24.0"
+    exclude-result-prefixes="ds cu cat ct">
+
+  <xsl:output method="html" indent="yes" />
+
+  <!-- корневой шаблон -->
+  <xsl:template match="/">
+    <html>
+      <body>
+        <table border="1">
+          <tr>
+            <th>GoodsMarking</th>
+            <th>PrDocumentNumber</th>
+          </tr>
+          <xsl:for-each select="//ct:GoodsMarking">
+            <tr>
+              <td><xsl:value-of select="."/></td>
+              <td>
+                <xsl:value-of 
+                  select="//cu:ESADout_CUPresentedDocument"/>
+              </td>
+            </tr>
+          </xsl:for-each>
+        </table>
+      </body>
+    </html>
+  </xsl:template>
+
+</xsl:stylesheet>
